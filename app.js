@@ -8,11 +8,6 @@ const creditcard = require('./routes/creditcard/creditcard.js')
 
 
 app.use(express.static("public"));
-// app.use('/electronics', electronics)
-// app.use('/fashion', fashion)
-// app.use('/grocery', grocery)
-// app.use('/mobile', mobile)
-
 app.use('/internetbanking', internetbanking)
 app.use('/loan', loan)
 app.use('/shopping', shopping)
