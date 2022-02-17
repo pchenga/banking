@@ -12,9 +12,7 @@ app.use('/internetbanking', internetbanking)
 app.use('/loan', loan)
 app.use('/shopping', shopping)
 app.use('/creditcard', creditcard)
-// router.use('/electronics', fashionHandler)
-// router.use('/grocery', fashionHandler)
-// router.use('/mobile', fashionHandler)
+
 
 const port = process.env.PORT || 8080;
 
