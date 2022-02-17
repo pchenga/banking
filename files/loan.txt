@@ -1,1 +1,1 @@
-Swarna changed loan amount : 90000
+loan amount : 50000
