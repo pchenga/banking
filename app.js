@@ -5,8 +5,6 @@ const internetbanking = require('./routes/internetbanking/internetbanking.js')
 const loan = require('./routes/loan/loan.js')
 const shopping = require('./routes/shopping/shopping.js')
 const creditcard = require('./routes/creditcard/creditcard.js')
-
-
 app.use(express.static("public"));
 app.use('/internetbanking', internetbanking)
 app.use('/loan', loan)
