@@ -1,1 +1,2 @@
+Home loan : 80000
 loan amount : 50000
