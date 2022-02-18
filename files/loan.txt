@@ -1,1 +1,2 @@
+Vehicle loan : 7000000
 loan amount : 50000
