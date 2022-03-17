@@ -1,0 +1,71 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+pool:
+  default
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+  # imageName: 'pipelines-javascript-docker'
+  ImageName: 'reddyrani/devops:$(Build.BuildId)'
+
+# steps:
+# - task: Docker@2
+#   displayName: Build an image
+#   inputs:
+#     repository: $(imageName)
+#     command: build
+#     Dockerfile: app/Dockerfile
+# stages:
+# - stage: Build
+#   displayName: Build image
+#   jobs:
+#   - job: Build
+#     displayName: Build
+#     pool:
+#       vmImage: ubuntu-latest
+steps:
+# - task: Docker@2
+#   displayName: Build an image
+#   inputs:
+#     command: build
+#     dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
+#     tags: |
+#       $(tag)
+
+# - task: Docker@2
+#   displayName: Build and Push an image
+#   inputs:
+#     containerRegistry: 'docker connection'
+#     repository: 'reddyrani/jsimages'
+#     command: 'buildAndPush'
+#     Dockerfile: 'app/Dockerfile'
+#     tags: '$(tag)'
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcloud'
+    organization: 'devops963'
+    scannerMode: 'CLI'
+    configMode: 'file'
+
+- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
+
+
+# - task: KubernetesManifest@0
+#   inputs:
+
+#     action: 'deploy'
+#     kubernetesServiceConnection: 'MykubeConnection'
+#     namespace: 'default'
+#     manifests: 'deploy/kubernetes.yaml'
+#     containers: 'docker.io/reddyrani/jsimages:4'
