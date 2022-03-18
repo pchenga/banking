@@ -12,6 +12,9 @@ pool:
 resources:
 - repo: self
 
+variables:
+  mytag: myimage-'$(Build.BuildId)'
+
 steps:
 # - task: DockerInstaller@0
 #   inputs:
@@ -22,6 +25,8 @@ steps:
     repository: 'charankumarcpl/pipeline'
     command: 'build'
     Dockerfile: '**/Dockerfile'
+    tags: |
+      $(mytag)
 
 - task: Docker@2
   inputs:
