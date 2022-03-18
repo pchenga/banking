@@ -13,7 +13,7 @@ resources:
 - repo: self
 
 variables:
-  mytag: myimage-'$(Build.BuildId)'
+  mytag: 'myimage-$(Build.BuildId)'
 
 steps:
 # - task: DockerInstaller@0
