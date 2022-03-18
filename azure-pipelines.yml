@@ -33,3 +33,4 @@ steps:
     containerRegistry: 'dockerhub-connection'
     repository: 'charankumarcpl/pipeline'
     command: 'push'
+    tags:   $(mytag)
