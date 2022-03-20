@@ -35,9 +35,18 @@ steps:
 #     command: 'push'
 #     tags:   $(mytag)
 
-- task: PublishBuildArtifacts@1
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#     ArtifactName: 'drop'
+#     publishLocation: 'Container'
+#     StoreAsTar: true
+
+- task: UniversalPackages@0
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-    StoreAsTar: true
+    command: 'publish'
+    publishDirectory: '$(Build.ArtifactStagingDirectory)'
+    feedsToUsePublish: 'internal'
+    vstsFeedPublish: '3e2e9c6a-60da-4871-94ef-2ab229f1ad6c/57e284b8-d2a4-4caa-b2c3-dddae9e352bd'
+    vstsFeedPackagePublish: 'sample-artifact-package'
+    versionOption: 'patch'
