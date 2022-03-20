@@ -19,18 +19,25 @@ steps:
 # - task: DockerInstaller@0
 #   inputs:
 #     dockerVersion: '17.09.0-ce'
-- task: Docker@2
-  inputs:
-    containerRegistry: 'dockerhub-connection'
-    repository: 'charankumarcpl/pipeline'
-    command: 'build'
-    Dockerfile: '**/Dockerfile'
-    tags: |
-      $(mytag)
+# - task: Docker@2
+#   inputs:
+#     containerRegistry: 'dockerhub-connection'
+#     repository: 'charankumarcpl/pipeline'
+#     command: 'build'
+#     Dockerfile: '**/Dockerfile'
+#     tags: |
+#       $(mytag)
 
-- task: Docker@2
+# - task: Docker@2
+#   inputs:
+#     containerRegistry: 'dockerhub-connection'
+#     repository: 'charankumarcpl/pipeline'
+#     command: 'push'
+#     tags:   $(mytag)
+
+- task: PublishBuildArtifacts@1
   inputs:
-    containerRegistry: 'dockerhub-connection'
-    repository: 'charankumarcpl/pipeline'
-    command: 'push'
-    tags:   $(mytag)
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+    StoreAsTar: true
