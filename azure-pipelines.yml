@@ -16,31 +16,24 @@ variables:
   mytag: 'myimage-$(Build.BuildId)'
 
 steps:
-# - task: DockerInstaller@0
-#   inputs:
-#     dockerVersion: '17.09.0-ce'
-# - task: Docker@2
-#   inputs:
-#     containerRegistry: 'dockerhub-connection'
-#     repository: 'charankumarcpl/pipeline'
-#     command: 'build'
-#     Dockerfile: '**/Dockerfile'
-#     tags: |
-#       $(mytag)
+- task: DockerInstaller@0
+  inputs:
+    dockerVersion: '17.09.0-ce'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerhub-connection'
+    repository: 'charankumarcpl/pipeline'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      $(mytag)
 
-# - task: Docker@2
-#   inputs:
-#     containerRegistry: 'dockerhub-connection'
-#     repository: 'charankumarcpl/pipeline'
-#     command: 'push'
-#     tags:   $(mytag)
-
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#     ArtifactName: 'drop'
-#     publishLocation: 'Container'
-#     StoreAsTar: true
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerhub-connection'
+    repository: 'charankumarcpl/pipeline'
+    command: 'push'
+    tags:   $(mytag)
 
 - task: UniversalPackages@0
   inputs:
